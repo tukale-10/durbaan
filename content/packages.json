@@ -1,0 +1,141 @@
+{
+  "currency": "USD",
+  "offers": {
+    "impact": { "priceDisplay": "from" },
+    "partner": { "priceDisplay": "from" },
+    "business": { "priceDisplay": "from" },
+    "enterprise": { "priceDisplay": "on-request" }
+  },
+  "packages": [
+    {
+      "id": "donor-ready", "offerLine": "impact", "name": "Donor-Ready", "lead": true,
+      "price": 2500, "unit": null, "timeline": "4 to 6 weeks",
+      "pillars": ["digital", "stories"],
+      "summary": "Get your organization ready for direct donor funding and due diligence. We clean up your brand, build a professional website that shows your programs and results, write your organization profile, and produce your first impact video and success stories.",
+      "includes": ["Brand cleanup and one-page brand guide", "Website of 6 to 8 pages with easy editing", "Organization profile PDF of 12 to 16 pages", "One 2 to 3 minute impact video", "Two written success stories", "Staff training"]
+    },
+    {
+      "id": "impact-story-pack", "offerLine": "impact", "name": "Impact Story Pack",
+      "price": 4000, "unit": null, "timeline": "4 to 8 weeks",
+      "pillars": ["stories"],
+      "summary": "Show donors the people behind your numbers. Our Somali-speaking crew documents your program with care, consent and donor-standard safeguarding.",
+      "includes": ["Story plan and consent protocol", "3 to 5 field days", "One 5 to 8 minute documentary with Somali and English subtitles", "3 to 5 short videos for social media", "Six photo stories", "Four written success stories"],
+      "note": "Travel and security quoted separately."
+    },
+    {
+      "id": "evidence-dashboard", "offerLine": "impact", "name": "Evidence Dashboard",
+      "price": 3000, "unit": null, "timeline": "4 to 8 weeks",
+      "pillars": ["data"],
+      "summary": "Turn scattered spreadsheets and paper forms into a live dashboard your team and donors can trust.",
+      "includes": ["Data audit and cleaning", "Indicators mapped to your logframe", "KoBo or ODK forms where needed", "Live dashboard in Power BI or Looker Studio, by location, sex, age and period", "Donor report template", "Training and 30 days of support"]
+    },
+    {
+      "id": "impact-showcase", "offerLine": "impact", "name": "Impact Showcase", "highlight": true,
+      "price": 9000, "unit": null, "timeline": "10 to 14 weeks",
+      "pillars": ["stories", "data", "digital"],
+      "summary": "All three packages in one project, about 15% less than buying them separately. Your website shows your stories and links your dashboard, so donors see proof, people and credibility in one place.",
+      "includes": ["Everything in Donor-Ready", "Everything in Impact Story Pack", "Everything in Evidence Dashboard", "One connected launch: website, stories and live data together"]
+    },
+    {
+      "id": "impact-partner-retainer", "offerLine": "impact", "name": "Impact Partner retainer",
+      "price": 800, "unit": "per month", "timeline": "Minimum 6 months",
+      "pillars": ["stories", "data", "digital"],
+      "summary": "A standing communications and data team for your program, without the hire.",
+      "includes": ["Monthly stories and posts", "Dashboard updates", "Website upkeep", "Quarterly donor report design"]
+    },
+
+    {
+      "id": "bid-support", "offerLine": "partner", "name": "Bid Support", "lead": true,
+      "price": 500, "unit": "per bid", "priceNote": "or a success fee", "timeline": "Matched to your deadline",
+      "pillars": ["capability"],
+      "summary": "We strengthen your proposal with communications, visibility and M&E sections, team CVs formatted to the donor template, and realistic budget lines for media and data work.",
+      "includes": ["Communications and visibility section", "M&E section", "Team CVs formatted to the donor template", "Realistic budget lines for media and data work"]
+    },
+    {
+      "id": "delivery-partner", "offerLine": "partner", "name": "Delivery Partner", "highlight": true,
+      "price": 250, "unit": "per day", "priceNote": "or fixed price per deliverable", "timeline": "Per project",
+      "pillars": ["stories", "data", "digital"],
+      "summary": "Any of our Impact packages delivered under your brand or co-branded, with one point of contact and fixed reporting dates.",
+      "includes": ["White-label or co-branded delivery", "One point of contact", "Fixed reporting dates", "Confidentiality and non-solicitation of your client"]
+    },
+    {
+      "id": "report-data-design", "offerLine": "partner", "name": "Report and Data Design",
+      "price": 1500, "unit": "per report", "timeline": "2 to 4 weeks",
+      "pillars": ["data"],
+      "summary": "We turn dense evaluation and research findings into clear reports people actually read.",
+      "includes": ["Designed report with charts and infographics", "Two-page brief", "Presentation deck"]
+    },
+    {
+      "id": "field-media-unit", "offerLine": "partner", "name": "Field Media Unit",
+      "price": 400, "unit": "per field day", "priceNote": "plus travel", "timeline": "On your schedule",
+      "pillars": ["stories"],
+      "summary": "A Somali-speaking crew for interviews, filming and photography, with consent, safeguarding and data protection to donor standards.",
+      "includes": ["Interviews, filming and photography", "Consent, safeguarding and data protection to donor standards", "Raw files and edited assets", "Transcripts in Somali and English"]
+    },
+
+    {
+      "id": "business-credibility-kit", "offerLine": "business", "name": "Business Credibility Kit", "lead": true, "highlight": true,
+      "price": 1200, "unit": null, "timeline": "3 to 5 weeks",
+      "pillars": ["digital"],
+      "summary": "Everything a customer checks before they visit, done properly.",
+      "includes": ["Logo and brand identity", "Website of 4 to 6 pages with WhatsApp, maps and contact forms", "Verified Google Business Profile", "12 branded social media templates"]
+    },
+    {
+      "id": "brand-film-shoot", "offerLine": "business", "name": "Brand Film and Content Shoot",
+      "price": 1000, "unit": null, "timeline": "2 to 4 weeks",
+      "pillars": ["stories"],
+      "summary": "Show your place, your team and your products the way they deserve to be seen.",
+      "includes": ["A 60 to 90 second brand film", "One shoot day with 30 to 50 edited photos", "4 to 6 short videos for social media"]
+    },
+    {
+      "id": "business-dashboard", "offerLine": "business", "name": "Business Dashboard",
+      "price": 1500, "unit": null, "timeline": "3 to 6 weeks",
+      "pillars": ["data"],
+      "summary": "One screen that shows how your business is really doing, refreshed automatically every week.",
+      "includes": ["Sales, stock or customer data cleaned", "Revenue, best sellers, stock levels and customer trends", "Automatic weekly refresh"]
+    },
+    {
+      "id": "business-system", "offerLine": "business", "name": "Business System",
+      "price": 2500, "unit": null, "timeline": "6 to 10 weeks",
+      "pillars": ["digital"],
+      "summary": "A simple custom system for one core process: bookings, inventory, orders, clients or HR.",
+      "includes": ["Staff accounts and mobile access", "Data moved from your spreadsheets", "Three months of support"]
+    },
+    {
+      "id": "growth-plan", "offerLine": "business", "name": "Growth Plan",
+      "price": 400, "unit": "per month", "timeline": "Minimum 6 months",
+      "pillars": ["stories", "digital"],
+      "summary": "Steady content and upkeep, with a clear monthly report on what worked.",
+      "includes": ["Monthly social content and short videos", "A quarterly photo session", "Website and dashboard upkeep", "One-page monthly report"]
+    },
+
+    {
+      "id": "annual-impact-report", "offerLine": "enterprise", "name": "Annual and Impact Report", "lead": true, "highlight": true,
+      "price": null, "unit": null, "timeline": "Scoped with you",
+      "pillars": ["data", "stories"],
+      "summary": "Your year, made clear to your board, regulators and the public.",
+      "includes": ["Data gathering with finance, CSR and operations", "Designed report of 24 to 60 pages, print and interactive web", "Summary film and social media cut-downs"]
+    },
+    {
+      "id": "corporate-story-series", "offerLine": "enterprise", "name": "Corporate Story Series",
+      "price": null, "unit": null, "timeline": "Scoped with you",
+      "pillars": ["stories"],
+      "summary": "Short documentaries about your staff, customers or community programs.",
+      "includes": ["Three to five short documentaries", "A photo library", "Press-ready assets", "A launch plan"]
+    },
+    {
+      "id": "enterprise-data-platform", "offerLine": "enterprise", "name": "Enterprise Data Platform",
+      "price": null, "unit": null, "timeline": "Scoped with you",
+      "pillars": ["data"],
+      "summary": "One trusted source of numbers across departments.",
+      "includes": ["Data assessment across departments", "Central data model with automated pipelines", "Role-based dashboards", "Data governance guide and staff training"]
+    },
+    {
+      "id": "ai-fluency-program", "offerLine": "enterprise", "name": "AI Fluency Program",
+      "price": null, "unit": null, "timeline": "Scoped with you",
+      "pillars": ["capability"],
+      "summary": "Practical, safe AI adoption for leaders and staff.",
+      "includes": ["Assessment of where AI saves time", "Hands-on workshops in English and Somali", "Three to five custom AI workflows or assistants", "A policy guide for safe use"]
+    }
+  ]
+}

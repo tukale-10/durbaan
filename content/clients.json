@@ -1,0 +1,7 @@
+[
+  { "name": "Sample client one", "logo": null, "permission": false, "draft": true },
+  { "name": "Sample client two", "logo": null, "permission": false, "draft": true },
+  { "name": "Sample client three", "logo": null, "permission": false, "draft": true },
+  { "name": "Sample client four", "logo": null, "permission": false, "draft": true },
+  { "name": "Sample client five", "logo": null, "permission": false, "draft": true }
+]
