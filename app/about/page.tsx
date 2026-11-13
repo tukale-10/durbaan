@@ -5,7 +5,7 @@ import { CtaBand, PageHero } from "@/components/ui/blocks";
 import { Pin, Shield } from "@/components/ui/icons";
 import { Eyebrow, Heading, Section, SampleBadge } from "@/components/ui/primitives";
 import { getTeam } from "@/lib/content";
-import { PhotoBand } from "@/components/sections/photos";
+import { FieldMosaic, PhotoBand } from "@/components/sections/photos";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
@@ -95,6 +95,14 @@ export default function AboutPage() {
           </div>
         </Section>
       )}
+
+      <FieldMosaic
+        ids={["farmer", "fisherman", "shelter"]}
+        eyebrow="Rooted"
+        title="The people behind the numbers."
+        intro="Farmers, traders, fishers and families. We tell their stories with dignity, in their own language, and only with their consent."
+        flush={false}
+      />
 
       {/* Values */}
       <Section tone="navy">

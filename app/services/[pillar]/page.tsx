@@ -8,6 +8,9 @@ import { WorkBand, workFor } from "@/components/sections/shared";
 import { offers } from "@/content/offers";
 import { pillarById, pillars } from "@/content/pillars";
 import { getPackages } from "@/lib/content";
+import { PhotoBand } from "@/components/sections/photos";
+
+const PILLAR_PHOTO: Record<string, string> = { stories: "shelter", data: "canal-men", digital: "market", capability: "farmer" };
 import { breadcrumbLd, JsonLd, pageMeta } from "@/lib/seo";
 
 export const dynamicParams = false;
@@ -31,6 +34,7 @@ export default async function PillarPage({ params }: { params: Promise<{ pillar:
       <PageHero eyebrow={`SERVICES · ${p.name.toUpperCase()}`} title={<>{p.promise.replace(/\.$/, "")}<span className="text-amber">.</span></>} intro={p.line}>
         <BookButton />
       </PageHero>
+      <PhotoBand id={PILLAR_PHOTO[p.id]} />
 
       <Section tone="white">
         <div className="container grid gap-12 lg:grid-cols-12">

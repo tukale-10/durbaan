@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/primitives";
 import { OfferPackages, OutcomeGrid, SeeAlso } from "@/components/sections/offer";
 import { Commitments, TestimonialBand, WorkBand, workFor } from "@/components/sections/shared";
 import { getPackages } from "@/lib/content";
+import { PhotoBand } from "@/components/sections/photos";
 import { serviceLd } from "@/lib/ld";
 import { breadcrumbLd, JsonLd, pageMeta } from "@/lib/seo";
 
@@ -24,6 +25,7 @@ export default function PartnersPage() {
         <Button href="/contact?type=Consultancy" size="lg" arrow>Send us your terms of reference</Button>
         <Button href="#packages" variant="outline-light" size="lg">Rates and packages</Button>
       </PageHero>
+      <PhotoBand id="fisherman" />
 
       <OutcomeGrid
         tone="white"

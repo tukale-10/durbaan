@@ -144,7 +144,7 @@ export default function Home() {
       <GuideBand />
 
       {/* 11. Final CTA */}
-      <CtaBand title={<>Ready to be heard<span className="text-amber">?</span></>} intro="Tell us who needs to see your work. In 30 minutes we will tell you honestly what it would take, and whether we are the right team.">
+      <CtaBand photoId="farmer" title={<>Ready to be heard<span className="text-amber">?</span></>} intro="Tell us who needs to see your work. In 30 minutes we will tell you honestly what it would take, and whether we are the right team.">
         <BookButton />
         <WhatsAppButton />
       </CtaBand>

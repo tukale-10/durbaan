@@ -28,6 +28,34 @@
       "alt": "A woman writes in a notebook at a women and girls safe space",
       "caption": "Women and girls safe space, Somalia",
       "consentConfirmed": false
+    },
+    {
+      "id": "shelter",
+      "file": "shelter-repair.jpg",
+      "alt": "An older woman ties the cloth of her shelter while children play behind her",
+      "caption": "Rebuilding a shelter, displacement site",
+      "consentConfirmed": true
+    },
+    {
+      "id": "market",
+      "file": "market-trader.jpg",
+      "alt": "A woman in a red hijab sells vegetables at a market stall",
+      "caption": "Market trader, Somalia",
+      "consentConfirmed": true
+    },
+    {
+      "id": "fisherman",
+      "file": "fisherman-catch.jpg",
+      "alt": "A fisherman drags his catch up the beach from the sea",
+      "caption": "Bringing in the catch on the coast",
+      "consentConfirmed": true
+    },
+    {
+      "id": "farmer",
+      "file": "farmer-portrait.jpg",
+      "alt": "A smiling farmer in a red hijab carries a woven basket across her field",
+      "caption": "Farmer in her field",
+      "consentConfirmed": true
     }
   ]
 }

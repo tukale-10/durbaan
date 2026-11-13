@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { getPackagesFile } from "@/lib/content";
+import { getPackagesFile, getPhoto } from "@/lib/content";
+import { Photo } from "@/components/sections/photos";
 import type { Package, Film } from "@/lib/schemas";
 import { ArrowRight, ArrowUpRight, Check, Clock, Plus } from "./icons";
 import { cx, Eyebrow, formatUSD, Rhythm, SampleBadge, TagPill } from "./primitives";
@@ -157,16 +158,24 @@ export function StatCard({ value, label, tone = "light" }: { value: string; labe
 }
 
 /* ---------- Final CTA band ---------- */
-export function CtaBand({ title, intro, children, eyebrow = "Next step" }: { title: ReactNode; intro?: ReactNode; children: ReactNode; eyebrow?: string }) {
+export function CtaBand({ title, intro, children, eyebrow = "Next step", photoId }: { title: ReactNode; intro?: ReactNode; children: ReactNode; eyebrow?: string; photoId?: string }) {
+  const photo = photoId ? getPhoto(photoId) : undefined;
   return (
     <section className="relative overflow-hidden bg-navy text-white">
       <div aria-hidden className="dots-faint absolute inset-0 [mask-image:radial-gradient(ellipse_at_80%_50%,black,transparent_70%)]" />
-      <div className="container relative py-24 sm:py-32">
-        <Rhythm className="mb-8" />
-        <Eyebrow tone="light" dot={false} className="mb-5">{eyebrow}</Eyebrow>
-        <h2 className="t-1 max-w-4xl">{title}</h2>
-        {intro && <p className="lead mt-6 max-w-2xl text-white/75">{intro}</p>}
-        <div className="mt-10 flex flex-wrap gap-3">{children}</div>
+      <div className={cx("container relative py-24 sm:py-32", photo && "grid gap-12 lg:grid-cols-12 lg:items-center")}>
+        <div className={cx(photo && "lg:col-span-7")}>
+          <Rhythm className="mb-8" />
+          <Eyebrow tone="light" dot={false} className="mb-5">{eyebrow}</Eyebrow>
+          <h2 className="t-1 max-w-4xl">{title}</h2>
+          {intro && <p className="lead mt-6 max-w-2xl text-white/75">{intro}</p>}
+          <div className="mt-10 flex flex-wrap gap-3">{children}</div>
+        </div>
+        {photo && (
+          <div className="lg:col-span-5">
+            <Photo p={photo} sizes="(min-width: 1024px) 40vw, 100vw" className="aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]" />
+          </div>
+        )}
       </div>
     </section>
   );

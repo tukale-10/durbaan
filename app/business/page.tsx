@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/primitives";
 import { OfferPackages, OutcomeGrid, SeeAlso } from "@/components/sections/offer";
 import { Commitments, TestimonialBand, WorkBand, workFor } from "@/components/sections/shared";
 import { getPackages } from "@/lib/content";
+import { PhotoBand } from "@/components/sections/photos";
 import { serviceLd } from "@/lib/ld";
 import { breadcrumbLd, JsonLd, pageMeta, } from "@/lib/seo";
 import { whatsappHref } from "@/lib/site";
@@ -26,6 +27,7 @@ export default function BusinessPage() {
         {wa ? <WhatsAppButton label="Get a quote on WhatsApp" variant="primary" message="Hello Durbaan, I would like a quote for my business." /> : <Button href="/contact?type=Business" size="lg" arrow>Get a quote</Button>}
         <Button href="#packages" variant="outline-light" size="lg">See packages</Button>
       </PageHero>
+      <PhotoBand id="market" />
 
       <OutcomeGrid
         tone="white"

@@ -25,19 +25,22 @@ export function Photo({ p, sizes, className, priority }: { p: P; sizes: string; 
 }
 
 /** Editorial mosaic: one large photo and two stacked. Renders only the photos that have consent. */
-export function FieldMosaic({ ids = ["canal-women", "canal-men", "water-point"] }: { ids?: string[] }) {
+export function FieldMosaic({
+  ids = ["canal-women", "canal-men", "water-point"],
+  eyebrow = "From the field",
+  title = "We work where the work happens.",
+  intro = "Our Somali-speaking crews film and photograph across Somalia, Somaliland, Ethiopia and Kenya, in the language of the people on screen, and with their consent.",
+  tone = "white",
+  flush = true,
+}: { ids?: string[]; eyebrow?: string; title?: string; intro?: string; tone?: "white" | "mist"; flush?: boolean }) {
   const photos = ids.map(getPhoto).filter((p): p is P => !!p);
   if (photos.length === 0) return null;
   const [big, ...rest] = photos;
   return (
-    <Section tone="white" className="!pt-0">
+    <Section tone={tone} className={flush ? "!pt-0" : undefined}>
       <div className="container">
         <div className="flex flex-wrap items-end justify-between gap-6">
-          <Heading
-            eyebrow="From the field"
-            title="We work where the work happens."
-            intro="Our Somali-speaking crews film and photograph across Somalia, Somaliland, Ethiopia and Kenya, in the language of the people on screen, and with their consent."
-          />
+          <Heading eyebrow={eyebrow} title={title} intro={intro} />
         </div>
         <div className="mt-12 grid gap-3 sm:gap-4 lg:grid-cols-12 lg:grid-rows-2">
           <Photo p={big} sizes="(min-width: 1024px) 60vw, 100vw" className="aspect-[3/2] lg:col-span-7 lg:row-span-2 lg:aspect-auto lg:min-h-[560px]" />
