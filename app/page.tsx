@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { Seal } from "@/components/brand/marks";
 import { BookButton, WhatsAppButton } from "@/components/ui/Cta";
-import { CtaBand, FilmMeta } from "@/components/ui/blocks";
+import { CtaBand } from "@/components/ui/blocks";
 import { ArrowRight } from "@/components/ui/icons";
-import { Button, Eyebrow, SampleBadge, Section } from "@/components/ui/primitives";
+import { Button, Eyebrow, Section } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
-import { VideoFacade } from "@/components/ui/VideoFacade";
+import { FilmsBand } from "@/components/sections/FilmsBand";
+import { FieldMosaic } from "@/components/sections/photos";
 import { AudienceGrid, Commitments, GuideBand, HowWeWork, PillarsGrid, TestimonialBand, TrustStrip, WorkBand } from "@/components/sections/shared";
 import { offers } from "@/content/offers";
-import { getAllCaseStudies, getAllFilms } from "@/lib/content";
+import { getAllCaseStudies } from "@/lib/content";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
@@ -29,7 +30,6 @@ export default function Home() {
   // One story, one dashboard, one website or system, as the PRD asks; fall back to featured order.
   const pick = (tags: string[]) => work.find((c) => c.services.some((s) => tags.includes(s)));
   const featured = Array.from(new Set([pick(["documentary", "video", "photo"]), pick(["dashboard", "report"]), pick(["website", "system"]), ...work].filter(Boolean))).slice(0, 3) as typeof work;
-  const film = getAllFilms()[0];
 
   return (
     <>
@@ -116,6 +116,9 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* Field photography */}
+      <FieldMosaic />
+
       {/* 4. Pillars */}
       <PillarsGrid />
 
@@ -125,24 +128,8 @@ export default function Home() {
       {/* 6. Featured work */}
       <WorkBand items={featured} intro="Real documentaries, dashboards, websites and systems. Every number we publish is confirmed by the client." />
 
-      {/* 7. Featured film */}
-      {film && (
-        <Section tone="navy" className="!pt-0 sm:!pt-0">
-          <div className="container">
-            <div className="flex flex-wrap items-center gap-3">
-              <Eyebrow tone="light">Featured film</Eyebrow>
-              {film.draft && <SampleBadge />}
-            </div>
-            <h2 className="t-2 mt-5 max-w-3xl">{film.title}</h2>
-            <p className="mt-4 max-w-2xl text-white/70">{film.synopsis}</p>
-            <VideoFacade className="mt-10" provider={film.provider} id={film.id} title={film.title} duration={film.duration} poster={film.posterImg} />
-            <div className="mt-8 flex flex-wrap items-end justify-between gap-6">
-              <FilmMeta f={film} tone="dark" />
-              <Link href="/films" className="inline-flex items-center gap-2 font-semibold text-amber">Film library <ArrowRight width={18} height={18} /></Link>
-            </div>
-          </div>
-        </Section>
-      )}
+      {/* 7. Documentaries */}
+      <FilmsBand tone="night" />
 
       {/* 8. How we work */}
       <HowWeWork />

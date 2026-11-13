@@ -1,0 +1,33 @@
+{
+  "_note": "Field photography used across the site. Set consentConfirmed: true only when everyone identifiable has given informed consent. Photos without it are never shown.",
+  "photos": [
+    {
+      "id": "canal-men",
+      "file": "canal-rehabilitation-men.webp",
+      "alt": "Men dig an irrigation canal by hand, a large termite mound behind them",
+      "caption": "Canal rehabilitation, Somalia",
+      "consentConfirmed": true
+    },
+    {
+      "id": "canal-women",
+      "file": "canal-rehabilitation-women.webp",
+      "alt": "Women and men dig a long irrigation channel across a dry field",
+      "caption": "Communities rebuilding irrigation canals, Somalia",
+      "consentConfirmed": true
+    },
+    {
+      "id": "water-point",
+      "file": "water-point-dolow.jpg",
+      "alt": "Women fill yellow jerrycans at a solar-powered water point",
+      "caption": "Solar-powered water point, Dolow, Gedo",
+      "consentConfirmed": true
+    },
+    {
+      "id": "safe-space",
+      "file": "womens-safe-space.jpg",
+      "alt": "A woman writes in a notebook at a women and girls safe space",
+      "caption": "Women and girls safe space, Somalia",
+      "consentConfirmed": false
+    }
+  ]
+}

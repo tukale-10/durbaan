@@ -86,9 +86,15 @@ export { CaseStudyCard, ServiceTags } from "./CaseStudyCard";
 
 /* ---------- Films ---------- */
 export function FilmMeta({ f, tone = "light" }: { f: Film; tone?: "light" | "dark" }) {
+  const rows = [
+    ["Program", f.client],
+    ["Location", f.location],
+    ["Duration", f.duration],
+    ["Language", f.language && `${f.language}${f.subtitles.length ? `, subtitles in ${f.subtitles.join(" and ")}` : ""}`],
+  ].filter((r): r is [string, string] => !!r[1]);
   return (
     <dl className={cx("grid grid-cols-2 gap-x-6 gap-y-3 text-sm sm:grid-cols-4", tone === "dark" ? "text-white/80" : "text-navy")}>
-      {[["Client", f.client], ["Location", f.location], ["Duration", f.duration], ["Language", `${f.language}${f.subtitles.length ? `, subtitles in ${f.subtitles.join(" and ")}` : ""}`]].map(([k, v]) => (
+      {rows.map(([k, v]) => (
         <div key={k}>
           <dt className={cx("eyebrow !text-[10px]", tone === "dark" ? "text-white/50" : "text-slate")}>{k}</dt>
           <dd className="mt-1">{v}</dd>

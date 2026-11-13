@@ -26,7 +26,7 @@ export default function FilmsPage() {
               <div className="flex flex-wrap items-center gap-3"><Eyebrow tone="amber">Featured documentary</Eyebrow>{featured.draft && <SampleBadge />}</div>
               <h2 className="t-2 mt-5 max-w-3xl">{featured.title}</h2>
               <p className="mt-4 max-w-2xl text-white/70">{featured.synopsis}</p>
-              <VideoFacade className="mt-10" provider={featured.provider} id={featured.id} title={featured.title} duration={featured.duration} poster={featured.posterImg} />
+              <VideoFacade className="mt-10" provider={featured.provider} id={featured.id} title={featured.title} duration={featured.duration} poster={featured.posterImg} overlayTitle={false} />
               <div className="mt-8"><FilmMeta f={featured} tone="dark" /></div>
             </div>
           </Section>
@@ -51,7 +51,7 @@ export default function FilmsPage() {
       </CtaBand>
       <JsonLd data={films.filter((f) => !f.draft && f.provider === "youtube").map((f) => ({
         "@context": "https://schema.org", "@type": "VideoObject", name: f.title, description: f.synopsis,
-        thumbnailUrl: `https://i.ytimg.com/vi/${f.id}/hqdefault.jpg`, uploadDate: `${f.year}-01-01`, embedUrl: `https://www.youtube-nocookie.com/embed/${f.id}`, inLanguage: f.language,
+        thumbnailUrl: `https://i.ytimg.com/vi/${f.id}/maxresdefault.jpg`, ...(f.year ? { uploadDate: `${f.year}-01-01` } : {}), embedUrl: `https://www.youtube-nocookie.com/embed/${f.id}`, inLanguage: f.language,
       }))} />
     </>
   );

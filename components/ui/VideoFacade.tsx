@@ -11,10 +11,14 @@ type Props = {
   duration?: string;
   poster?: { src: string; width: number; height: number; blurDataURL?: string };
   className?: string;
+  /** Smaller play button and no overlaid title, for grids. */
+  compact?: boolean;
+  /** Show the title over the poster (off when the title is printed next to the player). */
+  overlayTitle?: boolean;
 };
 
 /** Click-to-load player: shows a poster and loads the heavy player only when asked. Saves mobile data. */
-export function VideoFacade({ provider, id, title, duration, poster, className = "" }: Props) {
+export function VideoFacade({ provider, id, title, duration, poster, className = "", compact = false, overlayTitle = true }: Props) {
   const [active, setActive] = useState(false);
   const embed =
     provider === "youtube"
@@ -48,21 +52,21 @@ export function VideoFacade({ provider, id, title, duration, poster, className =
               alt=""
               fill
               sizes="(min-width: 1024px) 960px, 100vw"
-              className="object-cover opacity-80 transition duration-500 group-hover:scale-[1.02] group-hover:opacity-90"
+              className="object-cover opacity-90 transition duration-500 group-hover:scale-[1.02] group-hover:opacity-90"
               placeholder={poster?.blurDataURL ? "blur" : "empty"}
               blurDataURL={poster?.blurDataURL}
             />
           )}
-          <span className="absolute inset-0 bg-night/30" />
+          <span className="absolute inset-0 bg-night/20" />
           <span className="absolute inset-0 flex items-center justify-center">
-            <span className="flex h-20 w-20 items-center justify-center rounded-full bg-amber text-navy shadow-[0_0_0_10px_rgba(255,176,32,.18)] transition-transform duration-300 group-hover:scale-105 sm:h-24 sm:w-24">
-              <Play width={30} height={30} className="ml-1" />
+            <span className={`flex items-center justify-center rounded-full bg-amber text-navy shadow-[0_0_0_10px_rgba(255,176,32,.18)] transition-transform duration-300 group-hover:scale-105 ${compact ? "h-14 w-14" : "h-20 w-20 sm:h-24 sm:w-24"}`}>
+              <Play width={compact ? 22 : 30} height={compact ? 22 : 30} className="ml-1" />
             </span>
           </span>
-          <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-white sm:p-7">
+          {!compact && overlayTitle && <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-white sm:p-7">
             <span className="font-display text-base font-semibold sm:text-xl">{title}</span>
             {duration && <span className="eyebrow shrink-0 text-white/80">{duration}</span>}
-          </span>
+          </span>}
         </button>
       )}
     </div>

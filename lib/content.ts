@@ -5,12 +5,13 @@ import matter from "gray-matter";
 import { cache } from "react";
 import { SHOW_DRAFTS } from "./site";
 import {
-  articleSchema, caseStudySchema, clientSchema, filmSchema, packagesFileSchema, teamSchema, testimonialSchema,
+  articleSchema, caseStudySchema, photoSchema, clientSchema, filmSchema, packagesFileSchema, teamSchema, testimonialSchema,
   type Article, type CaseStudyFrontmatter, type Film, type Package,
 } from "./schemas";
 import packagesJson from "@/content/packages.json";
 import testimonialsJson from "@/content/testimonials.json";
 import clientsJson from "@/content/clients.json";
+import photosJson from "@/content/photos.json";
 
 const ROOT = process.cwd();
 const CONTENT = path.join(ROOT, "content");
@@ -96,7 +97,7 @@ export const getAllFilms = cache((): (Film & { posterImg?: Img })[] => {
       return { ...film, posterImg: film.poster ? resolveImage("/films", film.poster, film.posterAlt || film.title) : undefined };
     })
     .filter((f) => SHOW_DRAFTS || !f.draft)
-    .sort((a, b) => Number(b.featured) - Number(a.featured) || b.year - a.year);
+    .sort((a, b) => Number(b.featured) - Number(a.featured) || (b.year ?? 0) - (a.year ?? 0));
 });
 
 export const getAllArticles = cache((): (Article & { body: string })[] => {
@@ -138,3 +139,13 @@ export const getTestimonials = cache(() =>
 export const getClients = cache(() =>
   clientSchema.array().parse(clientsJson).filter((c) => (c.permission && !c.draft) || (SHOW_DRAFTS && c.draft)),
 );
+
+/** Field photos. Only photos with confirmed consent are ever returned. */
+export const getPhotos = cache(() =>
+  photoSchema
+    .array()
+    .parse(photosJson.photos)
+    .filter((p) => p.consentConfirmed)
+    .map((p) => ({ ...resolveImage("/photos", p.file, p.alt), id: p.id, caption: p.caption })),
+);
+export const getPhoto = (id: string) => getPhotos().find((p) => p.id === id);

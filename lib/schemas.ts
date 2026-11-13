@@ -64,9 +64,9 @@ export const filmSchema = z.object({
   slug: z.string().regex(/^[a-z0-9-]+$/),
   client: z.string().min(1),
   location: z.string().min(1),
-  year: z.number().int(),
-  duration: z.string().min(1),
-  language: z.string().min(1),
+  year: z.number().int().optional(),
+  duration: z.string().optional(),
+  language: z.string().optional(),
   subtitles: z.array(z.string()).default([]),
   synopsis: z.string().min(1),
   sectors: z.array(z.enum(SECTORS)).min(1),
@@ -122,4 +122,12 @@ export const testimonialSchema = z.object({
 });
 export const clientSchema = z.object({
   name: z.string(), logo: z.string().nullable(), permission: z.boolean(), draft: z.boolean().default(false),
+});
+
+export const photoSchema = z.object({
+  id: z.string(),
+  file: z.string(),
+  alt: z.string().min(1),
+  caption: z.string().optional(),
+  consentConfirmed: z.boolean(),
 });

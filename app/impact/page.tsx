@@ -4,6 +4,8 @@ import { Button, Heading, Section } from "@/components/ui/primitives";
 import { OfferPackages, OutcomeGrid, SeeAlso, SplitStatement } from "@/components/sections/offer";
 import { Commitments, GuideBand, TestimonialBand, WorkBand, workFor } from "@/components/sections/shared";
 import { faq } from "@/content/faq";
+import { FilmsBand } from "@/components/sections/FilmsBand";
+import { PhotoBand } from "@/components/sections/photos";
 import experience from "@/content/experience.json";
 import { breadcrumbLd, JsonLd, pageMeta } from "@/lib/seo";
 import { getPackages } from "@/lib/content";
@@ -27,6 +29,7 @@ export default function ImpactPage() {
         <BookButton label="Book a free donor-readiness call" />
         <Button href="#packages" variant="outline-light" size="lg">See packages and prices</Button>
       </PageHero>
+      <PhotoBand id="canal-women" />
 
       <SplitStatement eyebrow="The challenge" title="Donors are looking. Can they see you?">
         <p>Donors now look for local partners they can fund directly. They check your website, your reports, your data and your stories before they call.</p>
@@ -44,6 +47,8 @@ export default function ImpactPage() {
       />
 
       <OfferPackages line="impact" title="Choose where to start." intro="Each package is a fixed scope with a fixed timeline. The Impact Showcase combines all three and saves about 15%." />
+
+      <FilmsBand eyebrow="Impact documentaries" title="Programs we have put on screen." />
 
       <WorkBand items={work} tone="white" eyebrow="Relevant work" title="Programs we have made visible." />
 

@@ -5,6 +5,7 @@ import { CtaBand, PageHero } from "@/components/ui/blocks";
 import { Pin, Shield } from "@/components/ui/icons";
 import { Eyebrow, Heading, Section, SampleBadge } from "@/components/ui/primitives";
 import { getTeam } from "@/lib/content";
+import { PhotoBand } from "@/components/sections/photos";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
@@ -26,6 +27,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHero eyebrow="ABOUT" title={<>The drum that calls people to hear what matters<span className="text-amber">.</span></>} />
+      <PhotoBand id="water-point" />
 
       {/* The drum story */}
       <Section tone="white" size="lg">

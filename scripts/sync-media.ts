@@ -5,6 +5,7 @@
  *
  *   content/work/[slug]/media/*  ->  public/work/[slug]/*.jpg
  *   content/films/media/*        ->  public/films/*.jpg
+ *   content/photos/media/*       ->  public/photos/*.jpg
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -44,6 +45,7 @@ async function main() {
     }
   }
   await processDir(path.join(ROOT, "content/films/media"), path.join(ROOT, "public/films"), "/films");
+  await processDir(path.join(ROOT, "content/photos/media"), path.join(ROOT, "public/photos"), "/photos");
   fs.mkdirSync(path.join(ROOT, "lib/generated"), { recursive: true });
   fs.writeFileSync(path.join(ROOT, "lib/generated/media-manifest.json"), JSON.stringify(manifest, null, 2));
   console.log(`media: ${Object.keys(manifest).length} images synced`);
