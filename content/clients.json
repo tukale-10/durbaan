@@ -1,7 +1,29 @@
 [
-  { "name": "Sample client one", "logo": null, "permission": false, "draft": true },
-  { "name": "Sample client two", "logo": null, "permission": false, "draft": true },
-  { "name": "Sample client three", "logo": null, "permission": false, "draft": true },
-  { "name": "Sample client four", "logo": null, "permission": false, "draft": true },
-  { "name": "Sample client five", "logo": null, "permission": false, "draft": true }
+  {
+    "name": "UNOPS",
+    "logo": "/clients/unops.png",
+    "permission": true
+  },
+  {
+    "name": "The World Bank",
+    "logo": "/clients/world-bank.png",
+    "permission": true
+  },
+  {
+    "name": "Oxfam",
+    "logo": "/clients/oxfam.png",
+    "permission": true
+  },
+  {
+    "name": "NAPAD (Nomadic Assistance for Peace and Development)",
+    "logo": "/clients/napad.png",
+    "permission": true,
+    "scale": 1.2
+  },
+  {
+    "name": "Himilo Organization",
+    "logo": "/clients/himilo.png",
+    "permission": true,
+    "scale": 1.3
+  }
 ]

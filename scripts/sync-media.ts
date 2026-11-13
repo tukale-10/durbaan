@@ -37,6 +37,22 @@ async function processDir(srcDir: string, outDir: string, publicBase: string) {
   }
 }
 
+/** Client logos: trim surrounding whitespace, flatten onto white, normalise height. */
+async function processLogos(srcDir: string, outDir: string, publicBase: string) {
+  if (!fs.existsSync(srcDir)) return;
+  fs.mkdirSync(outDir, { recursive: true });
+  for (const f of fs.readdirSync(srcDir).filter((f) => IMG.test(f))) {
+    const name = f.replace(IMG, ".png");
+    const out = path.join(outDir, name);
+    // Flatten first in its own pass: sharp trims before flattening inside one pipeline.
+    const flat = await sharp(path.join(srcDir, f)).flatten({ background: "#ffffff" }).png().toBuffer();
+    const buf = await sharp(flat).trim({ background: "#ffffff", threshold: 30 }).toBuffer();
+    await sharp(buf).resize({ height: 160, withoutEnlargement: true }).png({ compressionLevel: 9 }).toFile(out);
+    const meta = await sharp(out).metadata();
+    manifest[`${publicBase}/${name}`] = { width: meta.width!, height: meta.height!, blurDataURL: "" };
+  }
+}
+
 async function main() {
   const workDir = path.join(ROOT, "content/work");
   if (fs.existsSync(workDir)) {
@@ -46,6 +62,7 @@ async function main() {
   }
   await processDir(path.join(ROOT, "content/films/media"), path.join(ROOT, "public/films"), "/films");
   await processDir(path.join(ROOT, "content/photos/media"), path.join(ROOT, "public/photos"), "/photos");
+  await processLogos(path.join(ROOT, "content/clients/media"), path.join(ROOT, "public/clients"), "/clients");
   fs.mkdirSync(path.join(ROOT, "lib/generated"), { recursive: true });
   fs.writeFileSync(path.join(ROOT, "lib/generated/media-manifest.json"), JSON.stringify(manifest, null, 2));
   console.log(`media: ${Object.keys(manifest).length} images synced`);

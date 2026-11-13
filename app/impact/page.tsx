@@ -2,7 +2,7 @@ import { BookButton, WhatsAppButton } from "@/components/ui/Cta";
 import { CtaBand, Faq, faqLd, PageHero } from "@/components/ui/blocks";
 import { Button, Heading, Section } from "@/components/ui/primitives";
 import { OfferPackages, OutcomeGrid, SeeAlso, SplitStatement } from "@/components/sections/offer";
-import { Commitments, GuideBand, TestimonialBand, WorkBand, workFor } from "@/components/sections/shared";
+import { TrustStrip, Commitments, GuideBand, TestimonialBand, WorkBand, workFor } from "@/components/sections/shared";
 import { faq } from "@/content/faq";
 import { FilmsBand } from "@/components/sections/FilmsBand";
 import { PhotoBand } from "@/components/sections/photos";
@@ -30,6 +30,8 @@ export default function ImpactPage() {
         <Button href="#packages" variant="outline-light" size="lg">See packages and prices</Button>
       </PageHero>
       <PhotoBand id="canal-women" />
+      <div className="h-12 bg-white sm:h-16" />
+      <TrustStrip label="Programs we have worked with" />
 
       <SplitStatement eyebrow="The challenge" title="Donors are looking. Can they see you?">
         <p>Donors now look for local partners they can fund directly. They check your website, your reports, your data and your stories before they call.</p>

@@ -136,9 +136,14 @@ export const getTestimonials = cache(() =>
 );
 
 /** Only clients with written permission are ever shown in production. */
-export const getClients = cache(() =>
-  clientSchema.array().parse(clientsJson).filter((c) => (c.permission && !c.draft) || (SHOW_DRAFTS && c.draft)),
-);
+export const getClients = cache(() => {
+  const manifest = loadManifest();
+  return clientSchema
+    .array()
+    .parse(clientsJson)
+    .filter((c) => (c.permission && !c.draft) || (SHOW_DRAFTS && c.draft))
+    .map((c) => ({ ...c, logoSize: c.logo ? manifest[c.logo] : undefined }));
+});
 
 /** Field photos. Only photos with confirmed consent are ever returned. */
 export const getPhotos = cache(() =>

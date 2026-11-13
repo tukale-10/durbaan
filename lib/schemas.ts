@@ -122,6 +122,8 @@ export const testimonialSchema = z.object({
 });
 export const clientSchema = z.object({
   name: z.string(), logo: z.string().nullable(), permission: z.boolean(), draft: z.boolean().default(false),
+  /** Optical size correction for logos with thin wordmarks. */
+  scale: z.number().min(0.5).max(2).default(1),
 });
 
 export const photoSchema = z.object({

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { offers, type OfferLine } from "@/content/offers";
 import { pillars } from "@/content/pillars";
@@ -187,21 +188,40 @@ export function TestimonialBand({ offerLine }: { offerLine?: OfferLine }) {
   );
 }
 
-/* Client logos; only those with written permission. */
-export function TrustStrip({ label = "Trusted by teams working with" }: { label?: string }) {
+/* Client logos; only those with written permission. Sized to equal visual weight. */
+export function TrustStrip({ label = "Trusted by teams working with", tone = "white" }: { label?: string; tone?: "white" | "mist" }) {
   const clients = getClients();
   if (!clients.length) return null;
+  const AREA = 4200; // target logo area in px, so wide and square marks feel the same size
   return (
-    <div className="border-b border-line bg-white">
-      <div className="container flex flex-col gap-6 py-10 lg:flex-row lg:items-center lg:gap-12">
-        <p className="eyebrow shrink-0 text-slate">{label}</p>
-        <ul className="flex flex-1 flex-wrap items-center gap-x-10 gap-y-4">
-          {clients.map((c) => (
-            <li key={c.name} className="flex items-center gap-2 font-display text-base font-semibold text-navy/50">
-              {c.draft && <SampleBadge />}
-              {c.name}
-            </li>
-          ))}
+    <div className={cx("border-b border-line", tone === "mist" ? "bg-mist" : "bg-white")}>
+      <div className="container flex flex-col gap-8 py-10 lg:flex-row lg:items-center lg:gap-14 lg:py-12">
+        <p className="eyebrow shrink-0 text-slate lg:max-w-[14rem]">{label}</p>
+        <ul className="grid flex-1 grid-cols-2 items-center gap-x-8 gap-y-8 sm:grid-cols-3 lg:flex lg:flex-wrap lg:justify-between lg:gap-x-10">
+          {clients.map((c) => {
+            if (!c.logo || !c.logoSize) {
+              return (
+                <li key={c.name} className="flex items-center gap-2 font-display text-base font-semibold text-navy/50">
+                  {c.draft && <SampleBadge />}
+                  {c.name}
+                </li>
+              );
+            }
+            const ratio = c.logoSize.width / c.logoSize.height;
+            const h = Math.round(Math.min(56, Math.max(22, Math.sqrt(AREA / ratio) * c.scale)));
+            return (
+              <li key={c.name} className="flex items-center justify-center lg:justify-start">
+                <Image
+                  src={c.logo}
+                  alt={c.name}
+                  width={Math.round(h * ratio)}
+                  height={h}
+                  style={{ height: h, width: "auto" }}
+                  className="max-w-full mix-blend-multiply grayscale opacity-70 transition duration-300 hover:opacity-100 hover:grayscale-0"
+                />
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
