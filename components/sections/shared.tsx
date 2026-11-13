@@ -192,12 +192,12 @@ export function TestimonialBand({ offerLine }: { offerLine?: OfferLine }) {
 export function TrustStrip({ label = "Trusted by teams working with", tone = "white" }: { label?: string; tone?: "white" | "mist" }) {
   const clients = getClients();
   if (!clients.length) return null;
-  const AREA = 4200; // target logo area in px, so wide and square marks feel the same size
+  const AREA = 3600; // target logo area in px, so wide and square marks feel the same size
   return (
     <div className={cx("border-b border-line", tone === "mist" ? "bg-mist" : "bg-white")}>
-      <div className="container flex flex-col gap-8 py-10 lg:flex-row lg:items-center lg:gap-14 lg:py-12">
-        <p className="eyebrow shrink-0 text-slate lg:max-w-[14rem]">{label}</p>
-        <ul className="grid flex-1 grid-cols-2 items-center gap-x-8 gap-y-8 sm:grid-cols-3 lg:flex lg:flex-wrap lg:justify-between lg:gap-x-10">
+      <div className="container py-12 lg:py-14">
+        <p className="eyebrow text-center text-slate">{label}</p>
+        <ul className="mt-10 grid grid-cols-2 items-center justify-items-center gap-x-6 gap-y-10 sm:grid-cols-3 md:grid-cols-5 lg:gap-x-10">
           {clients.map((c) => {
             if (!c.logo || !c.logoSize) {
               return (
@@ -208,9 +208,9 @@ export function TrustStrip({ label = "Trusted by teams working with", tone = "wh
               );
             }
             const ratio = c.logoSize.width / c.logoSize.height;
-            const h = Math.round(Math.min(56, Math.max(22, Math.sqrt(AREA / ratio) * c.scale)));
+            const h = Math.round(Math.min(56, Math.max(20, Math.sqrt(AREA / ratio) * c.scale)));
             return (
-              <li key={c.name} className="flex items-center justify-center lg:justify-start">
+              <li key={c.name} className="flex h-14 items-center justify-center">
                 <Image
                   src={c.logo}
                   alt={c.name}

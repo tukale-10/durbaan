@@ -25,5 +25,30 @@
     "logo": "/clients/himilo.png",
     "permission": true,
     "scale": 1.3
+  },
+  {
+    "name": "DP World",
+    "logo": "/clients/dp-world.png",
+    "permission": true
+  },
+  {
+    "name": "Shaqodoon Organization",
+    "logo": "/clients/shaqodoon.png",
+    "permission": true
+  },
+  {
+    "name": "ADRA",
+    "logo": "/clients/adra.png",
+    "permission": true
+  },
+  {
+    "name": "International Rescue Committee",
+    "logo": "/clients/irc.png",
+    "permission": true
+  },
+  {
+    "name": "Rayhan Rehab and Wellness Centre",
+    "logo": "/clients/rayhan.png",
+    "permission": true
   }
 ]
