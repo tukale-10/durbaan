@@ -50,5 +50,30 @@
     "name": "Rayhan Rehab and Wellness Centre",
     "logo": "/clients/rayhan.png",
     "permission": true
+  },
+  {
+    "name": "Tigaal",
+    "logo": "/clients/tigaal.png",
+    "permission": true
+  },
+  {
+    "name": "Hiran Technical Training Institute",
+    "logo": "/clients/hiran-tti.png",
+    "permission": true
+  },
+  {
+    "name": "Elelle",
+    "logo": "/clients/elelle.png",
+    "permission": true
+  },
+  {
+    "name": "Fikrcamp",
+    "logo": "/clients/fikrcamp.png",
+    "permission": true
+  },
+  {
+    "name": "ACTED",
+    "logo": "/clients/acted.png",
+    "permission": true
   }
 ]
