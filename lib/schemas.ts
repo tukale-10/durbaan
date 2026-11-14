@@ -156,6 +156,9 @@ export const projectSchema = z.object({
   results: z.array(z.object({ value: z.string().min(1), label: z.string().min(1) })).default([]),
   liveUrl: z.string().url().optional(),
   filmId: z.string().optional(),
+  /** External video link (e.g. Google Drive) when the film is not on YouTube. */
+  filmUrl: z.string().url().optional(),
+  filmLabel: z.string().optional(),
   image: z.string().optional(),
   mobileImage: z.string().optional(),
   imageAlt: z.string().optional(),

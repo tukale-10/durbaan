@@ -78,8 +78,13 @@ export function ProjectDetail({ p }: { p: Project }) {
             For <span className="font-semibold text-white">{p.clientFull ?? p.displayClient}</span>
             {p.year && <> &middot; {p.year}</>}
           </p>
-          {(p.liveUrl || p.filmId) && (
+          {(p.liveUrl || p.filmId || p.filmUrl) && (
             <div className="mt-8 flex flex-wrap gap-3">
+              {p.filmUrl && (
+                <a href={p.filmUrl} target="_blank" rel="noopener noreferrer" className="inline-flex h-12 items-center gap-2 rounded-full bg-amber px-6 text-sm font-semibold text-navy transition-colors hover:bg-[#FFC14D]">
+                  <Play width={14} height={14} /> {p.filmLabel ?? "Watch the film"} <ArrowUpRight width={16} height={16} />
+                </a>
+              )}
               {p.liveUrl && (
                 <a href={p.liveUrl} target="_blank" rel="noopener noreferrer" className="inline-flex h-12 items-center gap-2 rounded-full bg-amber px-6 text-sm font-semibold text-navy transition-colors hover:bg-[#FFC14D]">
                   Visit {host(p.liveUrl)} <ArrowUpRight width={16} height={16} />
@@ -96,7 +101,20 @@ export function ProjectDetail({ p }: { p: Project }) {
 
         {/* 2. Visual */}
         <div className="container relative pb-16 sm:pb-24">
-          {p.filmId && !isSite ? (
+          {p.filmUrl && p.img && !isSite ? (
+            <a href={p.filmUrl} target="_blank" rel="noopener noreferrer" className="group relative block aspect-video overflow-hidden rounded-card bg-night" aria-label={`${p.filmLabel ?? "Watch the film"} (opens in a new tab)`}>
+              <Image src={p.img.src} alt={p.img.alt} fill priority sizes="(min-width: 1280px) 1200px, 100vw" placeholder={p.img.blurDataURL ? "blur" : "empty"} blurDataURL={p.img.blurDataURL} className="object-cover transition duration-700 group-hover:scale-[1.02]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-night/70 via-transparent to-transparent" />
+              <span className="absolute inset-0 flex items-center justify-center">
+                <span className="flex h-20 w-20 items-center justify-center rounded-full bg-amber text-navy shadow-xl transition-transform duration-300 group-hover:scale-110 sm:h-24 sm:w-24">
+                  <Play width={30} height={30} />
+                </span>
+              </span>
+              <span className="absolute bottom-5 left-5 inline-flex items-center gap-2 rounded-full bg-navy/90 px-4 py-2 text-sm font-semibold text-white">
+                {p.filmLabel ?? "Watch the film"} <ArrowUpRight width={14} height={14} />
+              </span>
+            </a>
+          ) : p.filmId && !isSite ? (
             <VideoFacade provider="youtube" id={p.filmId} title={p.title} poster={p.img} overlayTitle={false} />
           ) : isSite ? (
             <Showcase p={p} />

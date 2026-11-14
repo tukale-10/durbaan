@@ -9,7 +9,7 @@ import { cx } from "@/components/ui/primitives";
 
 export type ProjectCardData = Pick<
   Project,
-  "slug" | "title" | "category" | "displayClient" | "year" | "location" | "status" | "results" | "whatWeDid" | "img" | "filmId" | "liveUrl" | "featured" | "sector"
+  "slug" | "title" | "category" | "displayClient" | "year" | "location" | "status" | "results" | "whatWeDid" | "img" | "filmId" | "filmUrl" | "liveUrl" | "featured" | "sector"
 >;
 
 export const CATEGORY_ICON: Record<ProjectCategory, typeof Stories> = {
@@ -207,7 +207,7 @@ export function ProjectVisual({ p, sizes, priority, className }: { p: ProjectCar
             className={cx("object-cover transition duration-700 group-hover:scale-[1.03]", screenshot && "object-top")}
           />
           {screenshot && <div aria-hidden className="pointer-events-none absolute inset-0 rounded-card ring-1 ring-inset ring-navy/10" />}
-          {p.filmId && !screenshot && (
+          {(p.filmId || p.filmUrl) && !screenshot && (
             <span aria-hidden className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-amber text-navy shadow-lg transition-transform duration-300 group-hover:scale-110">
               <Play width={18} height={18} />
             </span>
@@ -266,5 +266,5 @@ export function ProjectCard({ p, tone = "light", priority = false }: { p: Projec
 
 export const toCard = (p: Project): ProjectCardData => ({
   slug: p.slug, title: p.title, category: p.category, displayClient: p.displayClient, year: p.year, location: p.location, status: p.status,
-  results: p.results, whatWeDid: p.whatWeDid, img: p.img, filmId: p.filmId, liveUrl: p.liveUrl, featured: p.featured, sector: p.sector,
+  results: p.results, whatWeDid: p.whatWeDid, img: p.img, filmId: p.filmId, filmUrl: p.filmUrl, liveUrl: p.liveUrl, featured: p.featured, sector: p.sector,
 });
