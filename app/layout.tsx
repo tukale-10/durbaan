@@ -4,6 +4,8 @@ import Script from "next/script";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
+import { PILLAR_PHOTO, pillars } from "@/content/pillars";
+import { getPhoto } from "@/lib/content";
 import { JsonLd, organizationLd } from "@/lib/seo";
 import { nav, site, whatsappHref } from "@/lib/site";
 import "./globals.css";
@@ -24,12 +26,26 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { themeColor: "#0E1F3D", width: "device-width", initialScale: 1 };
 
+function servicesMenu() {
+  return pillars.map((p) => {
+    const ph = getPhoto(PILLAR_PHOTO[p.id]);
+    return {
+      id: p.id,
+      name: p.name,
+      promise: p.promise,
+      line: p.line,
+      services: p.services.map((s) => s.name),
+      photo: ph ? { src: ph.src, alt: ph.alt, blurDataURL: ph.blurDataURL } : undefined,
+    };
+  });
+}
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const plausible = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
   return (
     <html lang="en" className={`${unbounded.variable} ${inter.variable}`}>
       <body>
-        <Header nav={nav} whatsapp={whatsappHref()} />
+        <Header nav={nav} whatsapp={whatsappHref()} services={servicesMenu()} />
         <main id="main">{children}</main>
         <Footer />
         <WhatsAppFloat />

@@ -70,4 +70,7 @@ export const pillars: {
   },
 ];
 
+/** Field photo shown for each pillar (ids from content/photos.json). */
+export const PILLAR_PHOTO: Record<PillarId, string> = { stories: "shelter", data: "canal-men", digital: "market", capability: "farmer" };
+
 export const pillarById = (id: string) => pillars.find((p) => p.id === id);

@@ -6,11 +6,10 @@ import { ArrowRight } from "@/components/ui/icons";
 import { Heading, Section } from "@/components/ui/primitives";
 import { WorkBand, workFor } from "@/components/sections/shared";
 import { offers } from "@/content/offers";
-import { pillarById, pillars } from "@/content/pillars";
+import { PILLAR_PHOTO, pillarById, pillars } from "@/content/pillars";
 import { getPackages } from "@/lib/content";
 import { PhotoBand } from "@/components/sections/photos";
 
-const PILLAR_PHOTO: Record<string, string> = { stories: "shelter", data: "canal-men", digital: "market", capability: "farmer" };
 import { breadcrumbLd, JsonLd, pageMeta } from "@/lib/seo";
 
 export const dynamicParams = false;

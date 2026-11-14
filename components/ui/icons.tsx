@@ -7,6 +7,7 @@ export const ArrowRight = (p: P) => <svg {...base(p)}><path d="M5 12h14M13 6l6 6
 export const ArrowUpRight = (p: P) => <svg {...base(p)}><path d="M7 17 17 7M8 7h9v9" /></svg>;
 export const Check = (p: P) => <svg {...base(p)}><path d="m5 12.5 4.5 4.5L19 7.5" /></svg>;
 export const Plus = (p: P) => <svg {...base(p)}><path d="M12 5v14M5 12h14" /></svg>;
+export const ChevronDown = (p: P) => <svg {...base(p)}><path d="m6 9 6 6 6-6" /></svg>;
 export const Menu = (p: P) => <svg {...base(p)}><path d="M4 7h16M4 12h16M4 17h10" /></svg>;
 export const Close = (p: P) => <svg {...base(p)}><path d="M6 6l12 12M18 6 6 18" /></svg>;
 export const Play = (p: P) => <svg {...base({ ...p, fill: "currentColor", stroke: "none" })}><path d="M8 5.5v13a1 1 0 0 0 1.5.86l11-6.5a1 1 0 0 0 0-1.72l-11-6.5A1 1 0 0 0 8 5.5Z" /></svg>;
