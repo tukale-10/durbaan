@@ -16,7 +16,7 @@ const host = (u: string) => new URL(u).host.replace(/^www\./, "");
 function Showcase({ p }: { p: Project }) {
   if (!p.img) return null;
   return (
-    <div className="relative pb-10 sm:pb-0 sm:pr-16 lg:pr-24">
+    <div className={p.mobileImg ? "relative pb-10 sm:pb-0 sm:pr-16 lg:pr-24" : "relative"}>
       <div className="overflow-hidden rounded-[14px] bg-white shadow-[0_40px_80px_-30px_rgba(8,20,40,.7)] ring-1 ring-white/10">
         <div className="flex h-9 items-center gap-2 border-b border-line bg-mist px-4">
           <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]" />

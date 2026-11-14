@@ -21,6 +21,9 @@
         { "value": "5", "label": "PIU staff trained on 13 May 2026" },
         { "value": "Handed over", "label": "Technical handover to the PIU confirmed on 17 May 2026" }
       ],
+      "liveUrl": "https://www.scrp-mis.org/contract-management.html",
+      "image": "/projects/site-scrp-mis.jpg",
+      "imageAlt": "The SCRP-MIS Contract Management dashboard in Power BI",
       "featured": true
     },
     {
