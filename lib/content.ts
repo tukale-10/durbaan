@@ -163,7 +163,7 @@ function mediaImage(src: string, alt: string): Img {
   return { src, alt, ...info };
 }
 
-export type Project = ProjectData & { img?: Img; mobileImg?: Img; displayClient: string };
+export type Project = Omit<ProjectData, "gallery"> & { img?: Img; mobileImg?: Img; galleryImgs: Img[]; displayClient: string };
 
 const yearOf = (p: ProjectData) => Number((p.year ?? "").match(/\d{4}(?!.*\d{4})/)?.[0] ?? 0);
 
@@ -176,6 +176,7 @@ export const getProjects = cache((): Project[] =>
       displayClient: p.client === "Own product" ? "Durbaan product" : p.client,
       img: p.image ? mediaImage(p.image, p.imageAlt || p.title) : undefined,
       mobileImg: p.mobileImage ? mediaImage(p.mobileImage, `${p.imageAlt || p.title} on a phone`) : undefined,
+      galleryImgs: p.gallery.map((g) => mediaImage(g.src, g.alt)),
     }))
     // Featured first, then newest; undated work keeps its order at the end.
     .sort((a, b) => Number(b.featured) - Number(a.featured) || yearOf(b) - yearOf(a)),

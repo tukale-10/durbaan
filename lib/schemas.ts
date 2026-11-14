@@ -162,6 +162,7 @@ export const projectSchema = z.object({
   image: z.string().optional(),
   mobileImage: z.string().optional(),
   imageAlt: z.string().optional(),
+  gallery: z.array(z.object({ src: z.string(), alt: z.string().min(1) })).default([]),
   featured: z.boolean().default(false),
 });
 export type ProjectData = z.infer<typeof projectSchema>;

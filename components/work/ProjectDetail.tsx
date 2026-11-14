@@ -4,6 +4,7 @@ import { BookButton, WhatsAppButton } from "@/components/ui/Cta";
 import { CtaBand } from "@/components/ui/blocks";
 import { ArrowRight, ArrowUpRight, Play } from "@/components/ui/icons";
 import { Eyebrow, Section, TagPill } from "@/components/ui/primitives";
+import { Gallery } from "@/components/ui/Gallery";
 import { VideoFacade } from "@/components/ui/VideoFacade";
 import { offers } from "@/content/offers";
 import { getProjects, type Project } from "@/lib/content";
@@ -90,7 +91,14 @@ export function ProjectDetail({ p }: { p: Project }) {
                   Visit {host(p.liveUrl)} <ArrowUpRight width={16} height={16} />
                 </a>
               )}
-              {p.filmId && isSite && (
+              {p.galleryImgs.length > 0 && (
+              <section>
+                <Eyebrow className="mb-6">From the project</Eyebrow>
+                <Gallery images={p.galleryImgs} />
+              </section>
+            )}
+
+            {p.filmId && isSite && (
                 <a href="#film" className="inline-flex h-12 items-center gap-2 rounded-full border border-white/30 px-6 text-sm font-semibold hover:bg-white hover:text-navy">
                   <Play width={14} height={14} /> Watch the video
                 </a>
@@ -118,6 +126,10 @@ export function ProjectDetail({ p }: { p: Project }) {
             <VideoFacade provider="youtube" id={p.filmId} title={p.title} poster={p.img} overlayTitle={false} />
           ) : isSite ? (
             <Showcase p={p} />
+          ) : p.img ? (
+            <div className="relative aspect-[3/2] overflow-hidden rounded-card bg-night sm:aspect-[16/9]">
+              <Image src={p.img.src} alt={p.img.alt} fill priority sizes="(min-width: 1280px) 1200px, 100vw" placeholder={p.img.blurDataURL ? "blur" : "empty"} blurDataURL={p.img.blurDataURL} className="object-cover" />
+            </div>
           ) : (
             <div className="relative aspect-[4/3] overflow-hidden rounded-card ring-1 ring-white/10 sm:aspect-[21/9]">
               <ProjectTile p={p} size="hero" />
@@ -174,6 +186,13 @@ export function ProjectDetail({ p }: { p: Project }) {
                 ))}
               </ul>
             </section>
+
+            {p.galleryImgs.length > 0 && (
+              <section>
+                <Eyebrow className="mb-6">From the project</Eyebrow>
+                <Gallery images={p.galleryImgs} />
+              </section>
+            )}
 
             {p.filmId && isSite && (
               <section id="film" className="scroll-mt-28">

@@ -501,7 +501,13 @@
       "credit": "Independent work by our founder",
       "services": ["Documentary production", "Event video", "Event photography"],
       "whatWeDid": "We covered the launch day in Berbera in June 2021 with a documentary, event video and event photography.",
-      "results": []
+      "results": [],
+      "image": "/projects/dp-world-berbera-terminal.jpg",
+      "imageAlt": "A straddle carrier moves a DP World container at the new Berbera terminal",
+      "gallery": [
+        { "src": "/projects/dp-world-berbera-terminal.jpg", "alt": "A straddle carrier moves a DP World container at the new Berbera terminal" },
+        { "src": "/projects/dp-world-berbera-ceremony.jpg", "alt": "A naval guard of honour on the quay in front of the MSC Sabrina at the inauguration" }
+      ]
     }
   ]
 }
