@@ -6,7 +6,7 @@ import { VideoFacade } from "@/components/ui/VideoFacade";
 import { getAllFilms } from "@/lib/content";
 
 /** Featured documentary plus a row of further films. Each player loads only on click. */
-export function FilmsBand({ tone = "navy", eyebrow = "Documentaries", title = "Real people. Real change. On screen." }: { tone?: "navy" | "night"; eyebrow?: string; title?: string }) {
+export function FilmsBand({ tone = "navy", eyebrow = "Documentaries", title = "Real people. Real change. On screen.", limit = 4 }: { tone?: "navy" | "night"; eyebrow?: string; title?: string; limit?: number }) {
   const films = getAllFilms();
   if (!films.length) return null;
   const [featured, ...rest] = films;
@@ -40,7 +40,7 @@ export function FilmsBand({ tone = "navy", eyebrow = "Documentaries", title = "R
 
         {rest.length > 0 && (
           <ul className="mt-14 grid gap-x-5 gap-y-10 border-t border-white/10 pt-12 sm:grid-cols-2 lg:grid-cols-4">
-            {rest.slice(0, 4).map((f) => (
+            {rest.slice(0, limit).map((f) => (
               <li key={f.slug}>
                 <VideoFacade provider={f.provider} id={f.id} title={f.title} poster={f.posterImg} compact />
                 <p className="eyebrow mt-4 !text-[10px] text-white/55">{f.location}</p>

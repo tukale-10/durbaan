@@ -2,9 +2,10 @@ import { Suspense } from "react";
 import { BookButton } from "@/components/ui/Cta";
 import { CtaBand, PageHero } from "@/components/ui/blocks";
 import { Section } from "@/components/ui/primitives";
+import { FilmsBand } from "@/components/sections/FilmsBand";
 import { WorkFilters } from "@/components/sections/WorkFilters";
 import { offers } from "@/content/offers";
-import { getAllCaseStudies } from "@/lib/content";
+import { getAllCaseStudies, getAllFilms } from "@/lib/content";
 import { SECTOR_LABELS, SECTORS, SERVICE_LABELS, SERVICES } from "@/lib/schemas";
 import { pageMeta } from "@/lib/seo";
 
@@ -16,6 +17,7 @@ export const metadata = pageMeta({
 
 export default function WorkPage() {
   const all = getAllCaseStudies();
+  const hasFilms = getAllFilms().length > 0;
   const items = all.map(({ slug, title, displayClient, sectors, services, results, summary, hero, draft, offerLine, year }) => ({ slug, title, displayClient, sectors, services, results, summary, hero, draft, offerLine, year }));
   const years = Array.from(new Set(all.map((c) => c.year))).sort((a, b) => b - a);
   const groups = [
@@ -35,12 +37,16 @@ export default function WorkPage() {
             </Suspense>
           ) : (
             <div className="rounded-card bg-mist p-10 text-center sm:p-16">
-              <h2 className="t-3">New case studies are being written up.</h2>
-              <p className="mx-auto mt-4 max-w-xl text-slate">We publish a project only once the client has approved the story and the numbers. Ask us for examples relevant to your sector on a call.</p>
+              <h2 className="t-3">{hasFilms ? "Full case studies are being written up." : "New case studies are being written up."}</h2>
+              <p className="mx-auto mt-4 max-w-xl text-slate">
+                We publish a project only once the client has approved the story and the numbers.{" "}
+                {hasFilms ? "In the meantime, watch the documentaries we have made for our clients below." : "Ask us for examples relevant to your sector on a call."}
+              </p>
             </div>
           )}
         </div>
       </Section>
+      <FilmsBand eyebrow="Films" title="Documentaries we have made for our clients." limit={12} />
       <CtaBand title={<>Want to see work like yours<span className="text-amber">?</span></>} intro="Some of our best work is confidential. On a call, we can walk you through examples relevant to your sector.">
         <BookButton />
       </CtaBand>
