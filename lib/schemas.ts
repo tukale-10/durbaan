@@ -133,3 +133,32 @@ export const photoSchema = z.object({
   caption: z.string().optional(),
   consentConfirmed: z.boolean(),
 });
+
+export const PROJECT_CATEGORIES = ["Documentary", "Photo and stories", "Website", "Software and systems", "Dashboard and data", "Report and design", "Brand and design", "Training"] as const;
+export type ProjectCategory = (typeof PROJECT_CATEGORIES)[number];
+
+export const projectSchema = z.object({
+  slug: z.string().regex(/^[a-z0-9-]+$/),
+  title: z.string().min(1),
+  category: z.enum(PROJECT_CATEGORIES),
+  client: z.string().min(1),
+  clientFull: z.string().optional(),
+  year: z.string().optional(),
+  location: z.string().optional(),
+  places: z.array(z.string()).default([]),
+  status: z.enum(["Completed", "In progress", "Ongoing"]).optional(),
+  offerLine: z.enum(OFFER_LINES),
+  sector: z.string().min(1),
+  credit: z.string().optional(),
+  services: z.array(z.string()).min(1),
+  challenge: z.string().optional(),
+  whatWeDid: z.string().min(1),
+  results: z.array(z.object({ value: z.string().min(1), label: z.string().min(1) })).default([]),
+  liveUrl: z.string().url().optional(),
+  filmId: z.string().optional(),
+  image: z.string().optional(),
+  mobileImage: z.string().optional(),
+  imageAlt: z.string().optional(),
+  featured: z.boolean().default(false),
+});
+export type ProjectData = z.infer<typeof projectSchema>;

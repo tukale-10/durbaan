@@ -5,13 +5,14 @@ import matter from "gray-matter";
 import { cache } from "react";
 import { SHOW_DRAFTS } from "./site";
 import {
-  articleSchema, caseStudySchema, photoSchema, clientSchema, filmSchema, packagesFileSchema, teamSchema, testimonialSchema,
-  type Article, type CaseStudyFrontmatter, type Film, type Package,
+  articleSchema, caseStudySchema, photoSchema, clientSchema, filmSchema, packagesFileSchema, projectSchema, teamSchema, testimonialSchema,
+  type Article, type CaseStudyFrontmatter, type Film, type Package, type ProjectData,
 } from "./schemas";
 import packagesJson from "@/content/packages.json";
 import testimonialsJson from "@/content/testimonials.json";
 import clientsJson from "@/content/clients.json";
 import photosJson from "@/content/photos.json";
+import projectsJson from "@/content/projects.json";
 
 const ROOT = process.cwd();
 const CONTENT = path.join(ROOT, "content");
@@ -154,3 +155,29 @@ export const getPhotos = cache(() =>
     .map((p) => ({ ...resolveImage("/photos", p.file, p.alt), id: p.id, caption: p.caption })),
 );
 export const getPhoto = (id: string) => getPhotos().find((p) => p.id === id);
+
+/* ---------- Track record (content/projects.json) ---------- */
+function mediaImage(src: string, alt: string): Img {
+  const info = loadManifest()[src];
+  if (!info) throw new Error(`Image not found after media sync: ${src}. Run "npm run media".`);
+  return { src, alt, ...info };
+}
+
+export type Project = ProjectData & { img?: Img; mobileImg?: Img; displayClient: string };
+
+const yearOf = (p: ProjectData) => Number((p.year ?? "").match(/\d{4}(?!.*\d{4})/)?.[0] ?? 0);
+
+export const getProjects = cache((): Project[] =>
+  projectSchema
+    .array()
+    .parse(projectsJson.projects)
+    .map((p) => ({
+      ...p,
+      displayClient: p.client === "Own product" ? "Durbaan product" : p.client,
+      img: p.image ? mediaImage(p.image, p.imageAlt || p.title) : undefined,
+      mobileImg: p.mobileImage ? mediaImage(p.mobileImage, `${p.imageAlt || p.title} on a phone`) : undefined,
+    }))
+    // Featured first, then newest; undated work keeps its order at the end.
+    .sort((a, b) => Number(b.featured) - Number(a.featured) || yearOf(b) - yearOf(a)),
+);
+export const getProject = (slug: string) => getProjects().find((p) => p.slug === slug);

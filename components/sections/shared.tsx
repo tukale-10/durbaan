@@ -2,11 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { offers, type OfferLine } from "@/content/offers";
 import { pillars } from "@/content/pillars";
-import { getAllCaseStudies, getClients, getTestimonials, type CaseStudy } from "@/lib/content";
+import { getClients, getProjects, getTestimonials, type Project } from "@/lib/content";
+import { ProjectCard, toCard } from "@/components/work/project-ui";
 import { ArrowRight, Check, Clock, Globe, Key, Shield, Tag } from "@/components/ui/icons";
 import { pillarIcon } from "@/components/ui/icons";
 import { Button, cx, Eyebrow, Heading, Section, SampleBadge } from "@/components/ui/primitives";
-import { CaseStudyCard, NumberedItem, TestimonialBlock } from "@/components/ui/blocks";
+import { NumberedItem, TestimonialBlock } from "@/components/ui/blocks";
 import { Reveal } from "@/components/ui/Reveal";
 
 /* Pillars: four cards */
@@ -149,10 +150,10 @@ export function HowWeWork({ tone = "white" }: { tone?: "white" | "mist" | "navy"
   );
 }
 
-/* Case studies band; hides itself when there is no work to show. */
+/* Track record band; hides itself when there is no work to show. */
 export function WorkBand({
   items, title = "Proof, not promises.", eyebrow = "Selected work", intro, tone = "navy",
-}: { items: CaseStudy[]; title?: string; eyebrow?: string; intro?: string; tone?: "navy" | "white" | "mist" }) {
+}: { items: Project[]; title?: string; eyebrow?: string; intro?: string; tone?: "navy" | "white" | "mist" }) {
   if (!items.length) return null;
   const dark = tone === "navy";
   return (
@@ -164,7 +165,7 @@ export function WorkBand({
         </div>
         <div className="mt-14 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
           {items.slice(0, 3).map((c, i) => (
-            <Reveal key={c.slug} delay={i * 80}><CaseStudyCard c={c} tone={dark ? "dark" : "light"} /></Reveal>
+            <Reveal key={c.slug} delay={i * 80}><ProjectCard p={toCard(c)} tone={dark ? "dark" : "light"} /></Reveal>
           ))}
         </div>
       </div>
@@ -172,8 +173,11 @@ export function WorkBand({
   );
 }
 
-export function workFor(filter: (c: CaseStudy) => boolean) {
-  return getAllCaseStudies().filter(filter);
+export function workFor(filter: (p: Project) => boolean) {
+  const all = getProjects();
+  const hit = all.filter(filter);
+  // Results first, so each band leads with its strongest proof.
+  return [...hit.filter((p) => p.results.length), ...hit.filter((p) => !p.results.length)];
 }
 
 /* Testimonial band; only renders with a real (or, in preview, sample) testimonial. */

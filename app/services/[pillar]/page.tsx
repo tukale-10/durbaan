@@ -11,6 +11,14 @@ import { getPackages } from "@/lib/content";
 import { PhotoBand } from "@/components/sections/photos";
 
 import { breadcrumbLd, JsonLd, pageMeta } from "@/lib/seo";
+import type { ProjectCategory } from "@/lib/schemas";
+
+const PILLAR_CATEGORIES: Record<string, ProjectCategory[]> = {
+  stories: ["Documentary", "Photo and stories"],
+  data: ["Dashboard and data", "Report and design"],
+  digital: ["Website", "Software and systems", "Brand and design"],
+  capability: ["Training"],
+};
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -27,7 +35,7 @@ export default async function PillarPage({ params }: { params: Promise<{ pillar:
   const p = pillarById((await params).pillar);
   if (!p) notFound();
   const pkgs = getPackages((x) => x.pillars.includes(p.id) && x.unit !== "per month");
-  const work = workFor((c) => c.services.some((s) => p.serviceTags.includes(s)));
+  const work = workFor((x) => PILLAR_CATEGORIES[p.id].includes(x.category));
   return (
     <>
       <PageHero eyebrow={`SERVICES · ${p.name.toUpperCase()}`} title={<>{p.promise.replace(/\.$/, "")}<span className="text-amber">.</span></>} intro={p.line}>
@@ -58,7 +66,7 @@ export default async function PillarPage({ params }: { params: Promise<{ pillar:
         </div>
       </Section>
 
-      <WorkBand items={work} tone="white" eyebrow={`${p.name} work`} title="Related case studies." />
+      <WorkBand items={work} tone="white" eyebrow={`${p.name} work`} title="Related projects." />
 
       {pkgs.length > 0 && (
         <Section tone="mist">

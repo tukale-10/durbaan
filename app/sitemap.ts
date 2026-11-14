@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { pillars } from "@/content/pillars";
-import { getAllArticles, getAllCaseStudies } from "@/lib/content";
+import { getAllArticles, getAllCaseStudies, getProjects } from "@/lib/content";
 import { site } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticPaths.map((p) => ({ url: `${site.url}${p}`, lastModified: now, priority: priority(p) })),
     ...pillars.map((p) => ({ url: `${site.url}/services/${p.id}`, lastModified: now, priority: 0.7 })),
+    ...getProjects().map((p) => ({ url: `${site.url}/work/${p.slug}`, lastModified: now, priority: 0.7 })),
     ...getAllCaseStudies().filter((c) => !c.draft).map((c) => ({ url: `${site.url}/work/${c.slug}`, lastModified: now, priority: 0.7 })),
     ...getAllArticles().filter((a) => !a.draft).map((a) => ({ url: `${site.url}/resources/${a.slug}`, lastModified: new Date(a.date), priority: 0.6 })),
   ];

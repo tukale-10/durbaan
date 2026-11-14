@@ -62,6 +62,7 @@ async function main() {
   }
   await processDir(path.join(ROOT, "content/films/media"), path.join(ROOT, "public/films"), "/films");
   await processDir(path.join(ROOT, "content/photos/media"), path.join(ROOT, "public/photos"), "/photos");
+  await processDir(path.join(ROOT, "content/projects/media"), path.join(ROOT, "public/projects"), "/projects");
   await processLogos(path.join(ROOT, "content/clients/media"), path.join(ROOT, "public/clients"), "/clients");
   fs.mkdirSync(path.join(ROOT, "lib/generated"), { recursive: true });
   fs.writeFileSync(path.join(ROOT, "lib/generated/media-manifest.json"), JSON.stringify(manifest, null, 2));

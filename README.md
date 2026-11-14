@@ -43,6 +43,16 @@ Sections with nothing real to show hide themselves: featured work, films, the te
 
 Analytics events: `Form Submit`, `Guide Download`, `WhatsApp Click`, `Booking Click`, `Film Play`, `Newsletter Signup`.
 
+## Track record (projects)
+
+The Work page, the project pages (`/work/[slug]`) and the "Selected work" bands all read from `content/projects.json`, curated from the owner's project portfolio spreadsheet. To add or change a project, edit its entry there. Rules:
+
+- Leave out anything marked "Do not publish" in the sheet (bids, confidential and internal work).
+- `results` only holds confirmed outcomes. Leave it empty otherwise.
+- `credit` names the brand the work was delivered under when it was not Durbaan.
+- `image` is a path under `/projects` (files in `content/projects/media`) or `/films`. Website screenshots are named `site-*.jpg` and are shown in a browser frame, with `mobileImage` as the phone view. Projects without an image get a designed tile automatically.
+- `featured: true` puts a project in the spotlight on the Work page and on the home page.
+
 ## Adding a case study
 
 ```bash

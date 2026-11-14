@@ -10,24 +10,33 @@ import { Mdx } from "@/components/ui/Mdx";
 import { Eyebrow, SampleBadge, Section } from "@/components/ui/primitives";
 import { VideoFacade } from "@/components/ui/VideoFacade";
 import { offers } from "@/content/offers";
-import { getAllCaseStudies, getCaseStudy } from "@/lib/content";
+import { ProjectDetail } from "@/components/work/ProjectDetail";
+import { getAllCaseStudies, getCaseStudy, getProject, getProjects } from "@/lib/content";
 import { SECTOR_LABELS, SERVICE_LABELS } from "@/lib/schemas";
 import { breadcrumbLd, JsonLd, pageMeta } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
-  return getAllCaseStudies().map((c) => ({ slug: c.slug }));
+  const projects = getProjects().map((p) => ({ slug: p.slug }));
+  const caseStudies = getAllCaseStudies().filter((c) => !projects.some((p) => p.slug === c.slug)).map((c) => ({ slug: c.slug }));
+  return [...projects, ...caseStudies];
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const c = getCaseStudy((await params).slug);
+  const slug = (await params).slug;
+  const p = getProject(slug);
+  if (p) return pageMeta({ title: `${p.title} for ${p.displayClient}`, description: (p.challenge ?? p.whatWeDid).slice(0, 158), path: `/work/${p.slug}` });
+  const c = getCaseStudy(slug);
   if (!c) return {};
   return { ...pageMeta({ title: c.title, description: c.summary, path: `/work/${c.slug}` }), robots: c.draft ? { index: false } : undefined };
 }
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
-  const c = getCaseStudy((await params).slug);
+  const slug = (await params).slug;
+  const project = getProject(slug);
+  if (project) return <ProjectDetail p={project} />;
+  const c = getCaseStudy(slug);
   if (!c) notFound();
   const all = getAllCaseStudies();
   const next = all[(all.findIndex((x) => x.slug === c.slug) + 1) % all.length];

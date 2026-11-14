@@ -9,7 +9,7 @@ import { FilmsBand } from "@/components/sections/FilmsBand";
 import { FieldMosaic } from "@/components/sections/photos";
 import { AudienceGrid, Commitments, GuideBand, HowWeWork, PillarsGrid, TestimonialBand, TrustStrip, WorkBand } from "@/components/sections/shared";
 import { offers } from "@/content/offers";
-import { getAllCaseStudies } from "@/lib/content";
+import { getProjects } from "@/lib/content";
 import { pageMeta } from "@/lib/seo";
 
 export const metadata = pageMeta({
@@ -26,10 +26,8 @@ const facts = [
 ];
 
 export default function Home() {
-  const work = getAllCaseStudies();
-  // One story, one dashboard, one website or system, as the PRD asks; fall back to featured order.
-  const pick = (tags: string[]) => work.find((c) => c.services.some((s) => tags.includes(s)));
-  const featured = Array.from(new Set([pick(["documentary", "video", "photo"]), pick(["dashboard", "report"]), pick(["website", "system"]), ...work].filter(Boolean))).slice(0, 3) as typeof work;
+  const projects = getProjects();
+  const featured = [...projects.filter((p) => p.featured), ...projects.filter((p) => !p.featured)].slice(0, 3);
 
   return (
     <>
